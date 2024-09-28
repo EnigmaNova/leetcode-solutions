@@ -1,0 +1,12 @@
+class Solution {
+    public int arrangeCoins(int n) {
+        int metric = 1;
+        int rows = 0;
+
+        while(n >= 0){
+            n = n - metric++;
+            if(n>=0){rows++;}
+        }
+        return rows;
+    }
+}
