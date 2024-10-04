@@ -1,0 +1,44 @@
+class Solution {
+    public String[] findWords(String[] words) {
+        ArrayList<String> list = new ArrayList();
+        String first = "qwertyuiopQWERTYUIOP";
+        String second = "asdfghjklASDFGHJKL";
+        String third = "zxcvbnmZXCVBNM";
+
+        for(String word : words){
+            boolean met = true;
+            //word = word.toLowerCase();
+            if(first.indexOf(word.charAt(0)) != -1){
+                for(int i = 1; i < word.length(); i++){
+                    if(first.indexOf(word.charAt(i)) == -1){
+                        met = false;
+                        break;
+                    }
+                }
+            } else if(second.indexOf(word.charAt(0)) != -1){
+                for(int i = 1; i < word.length(); i++){
+                    if(second.indexOf(word.charAt(i)) == -1){
+                        met = false;
+                        break;
+                    }
+                }
+            } else if(third.indexOf(word.charAt(0)) != -1){
+                for(int i = 1; i < word.length(); i++){
+                    if(third.indexOf(word.charAt(i)) == -1){
+                        met = false;
+                        break;
+                    }
+                }
+            }
+            if(met){
+                list.add(word);
+            }
+        }
+        String[] res = new String[list.size()];
+        for(int i = 0; i < res.length; i++){
+            res[i] = list.get(i);
+        }
+        return res;
+        
+    }
+}
