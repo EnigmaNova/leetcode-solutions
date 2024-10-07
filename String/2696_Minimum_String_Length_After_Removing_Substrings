@@ -1,0 +1,17 @@
+class Solution {
+    public int minLength(String s) {
+       StringBuilder sb = new StringBuilder(s);
+       int i = 0;
+       while(i < sb.length()-1){
+        String pair = sb.substring(i, i + 2);
+        
+        if (pair.equals("AB") || pair.equals("CD")) {
+            sb.delete(i, i + 2); 
+            i = Math.max(i - 1, 0);
+        } else {
+            i++;
+        }
+       }
+       return sb.length();
+    }
+}
