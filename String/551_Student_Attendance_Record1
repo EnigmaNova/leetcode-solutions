@@ -1,0 +1,10 @@
+class Solution {
+    public boolean checkRecord(String s) {
+        //true если ноль или 1 A и нет трех и более подряд идущих L
+        if(s.indexOf('A') != s.lastIndexOf('A') || s.contains("LLL")){
+            return false;
+        } else{
+            return true;
+        }
+    }
+}
