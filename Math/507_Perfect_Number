@@ -1,0 +1,17 @@
+class Solution {
+    public boolean checkPerfectNumber(int num) {
+        List<Integer> list = new ArrayList();
+        int metric = 0;
+        for(int i = 1; i <= num/2; i++){
+            if(num % i == 0){
+                list.add(i);
+                metric += i;
+            }
+        }
+        if(metric == num){
+            return true;
+        } else{
+            return false;
+        }
+    }
+}
