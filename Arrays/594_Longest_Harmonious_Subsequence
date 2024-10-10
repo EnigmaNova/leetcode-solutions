@@ -1,0 +1,31 @@
+class Solution {
+    public int findLHS(int[] nums) {
+        Arrays.sort(nums);
+        boolean t = true;
+        int first = 0;
+        Map<Integer, Integer> map = new LinkedHashMap();
+        for(int num : nums){
+            map.put(num, map.getOrDefault(num, 0) + 1);
+            if(t){
+                first = num;
+                t = false;
+            }
+        }
+
+        int max = 0;
+        for(int key : map.keySet()){
+            if(!t){
+                t = true;
+                first = key;
+                continue;
+            }
+            if(key - first == 1){
+                if(map.get(key) + map.get(first) > max){
+                    max = map.get(key) + map.get(first);
+                }
+            }
+            first = key;
+        }
+        return max;
+    }
+}
