@@ -1,0 +1,24 @@
+class Solution {
+    public String mergeAlternately(String word1, String word2) {
+        int min = 0;
+        boolean met = true;
+        if(word1.length() <= word2.length()){
+            min = word1.length();
+            met = false;
+        } else{
+            min = word2.length();
+        }
+
+        String res = "";
+        for(int i = 1; i <= min; i ++){
+            res +=word1.substring(i-1, i);
+            res+=word2.substring(i-1, i);
+        }
+        if(met){
+            res += word1.substring(min);
+        } else{
+            res += word2.substring(min);
+        }
+        return res;
+    }
+}
