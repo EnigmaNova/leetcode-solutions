@@ -1,0 +1,26 @@
+class Solution {
+    public int[] numberOfLines(int[] widths, String s) {
+        int row = 0;
+        int column = 0;
+        int num = 0;
+        for(int i = 0; i < s.length(); i++){
+            int index = s.charAt(i) - 'a';
+            num = row + widths[index];
+            
+            if(num > 100){
+                row = widths[index];
+                column++;
+            } else if(num == 100){
+                row = 0;
+                column++;
+            } else{
+                row += widths[index];
+            }
+        }
+        if(row > 0){column++;}
+        if(column == 1){
+            row = num;
+        }
+        return new int[]{column, row};
+    }
+}
