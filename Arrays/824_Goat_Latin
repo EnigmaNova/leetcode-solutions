@@ -1,0 +1,25 @@
+class Solution {
+    public String toGoatLatin(String sentence) {
+        //1 если слово с гласной, то в конец этого слова maa
+        //2 если не гласная то удалить первую букву и в конец maa
+        String res = "";
+        String a = "a";
+        String[] arr = sentence.split(" ");
+        for(int i = 0; i < arr.length; i++){
+            if(arr[i].charAt(0) == 'a'|| arr[i].charAt(0) == 'e' || arr[i].charAt(0) == 'i' || arr[i].charAt(0) == 'o' || arr[i].charAt(0) == 'u' ||
+            arr[i].charAt(0) == 'A'|| arr[i].charAt(0) == 'E' || arr[i].charAt(0) == 'I' || arr[i].charAt(0) == 'O' || arr[i].charAt(0) == 'U'){
+                res += arr[i] + "ma";
+            } else{
+                res += arr[i].substring(1) + arr[i].charAt(0) + "ma";
+            }
+            if(i != arr.length-1){
+                res += a + " ";
+                a+="a";
+            } else{
+                res += a;
+            }
+
+        }
+        return res;
+    }
+}
