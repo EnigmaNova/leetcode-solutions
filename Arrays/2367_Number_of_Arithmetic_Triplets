@@ -1,0 +1,18 @@
+class Solution {
+    //
+    //иду от конца и от начала и сверяю с серединой
+    //
+    public int arithmeticTriplets(int[] nums, int diff) {
+        int res = 0;
+        for(int i = 0; i < nums.length; i++){
+            for(int j = nums.length-1; j >= 0; j--){
+                for(int k = i+1; k < nums.length-1; k++){
+                    if(nums[j] - nums[k] == diff && nums[k] - nums[i] == diff){
+                        res++;
+                    }
+                }
+            }
+        }
+        return res;
+    }
+}
