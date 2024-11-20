@@ -1,0 +1,18 @@
+class Solution {
+    public String kthDistinct(String[] arr, int k) {
+        if(k == 0){return "";}
+        Map<String, Integer> map = new LinkedHashMap();
+        for(String str : arr){
+            map.put(str, map.getOrDefault(str, 0) + 1);
+        }
+        for(String str : map.keySet()){
+            if(map.get(str) == 1 && k == 1){
+                return str;
+            }
+            if(map.get(str) == 1){
+                k--;
+            }
+        }
+        return "";
+    }
+}
