@@ -1,0 +1,26 @@
+class Solution {
+    public boolean isValid(String word) {
+        String glas = "aeiouAEIOU";
+        String sogl = "qwrtypsdfghjklzxcvbnmQWRTYPSDFGHJKLZXCVBNM";
+        String nums = "1234567890";
+
+        boolean bg = false;
+        boolean bs = false;
+
+        if(word.length()<3){return false;}
+        for(int i = 0; i < word.length(); i++){
+            char ch = word.charAt(i);
+            if(glas.indexOf(ch) == -1 && sogl.indexOf(ch) == -1 && nums.indexOf(ch) == -1){
+                return false;
+            }
+            if(glas.indexOf(ch) != -1){
+                bg = true;
+            }
+
+            if(sogl.indexOf(ch) != -1){
+                bs = true;
+            }
+        }
+        return bs && bg;
+    }
+}
