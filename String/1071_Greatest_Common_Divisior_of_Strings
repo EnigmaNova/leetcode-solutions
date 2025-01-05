@@ -1,0 +1,24 @@
+class Solution{
+    public String gcdOfStrings(String str1, String str2) {
+        if (str1.charAt(0) != str2.charAt(0)) {
+            return "";
+        }
+
+        for (int i = Math.min(str1.length(), str2.length()); i > 0; i--) {
+            String prefix = str1.substring(0, i);
+            if (isDivisor(str1, prefix) && isDivisor(str2, prefix)) {
+                return prefix;
+            }
+        }
+        return "";
+    }
+
+    private boolean isDivisor(String str, String prefix) {
+        int n = str.length() / prefix.length();
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < n; i++) {
+            sb.append(prefix);
+        }
+        return sb.toString().equals(str);
+    }
+}
