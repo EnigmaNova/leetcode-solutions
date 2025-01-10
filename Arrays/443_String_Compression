@@ -1,0 +1,29 @@
+class Solution {
+    public int compress(char[] c) {
+        if(c.length < 2){return 1;}
+        int count = 1;
+        String str = "";
+        for(int i = 1; i < c.length; i++){
+            if(c[i-1] == c[i]){
+                count++;
+            } else if(c[i-1] != c[i] && count > 1){
+                str += c[i-1];
+                str += count + "";
+                count = 1;
+            } else{
+                str+=c[i-1];
+            }
+        }
+
+        if(c[c.length-1] == c[c.length-2]){
+            str += c[c.length-1] + "" + count;
+        } else{
+            str += c[c.length-1];
+        }
+
+        for(int i = 0; i < str.length(); i++){
+            c[i] = str.charAt(i);
+        }
+        return str.length();
+    }
+}
