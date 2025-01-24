@@ -1,0 +1,25 @@
+class Solution {
+    //одинаковая длинна, одинаковые символы, и количество каждого символа должно быть эквивалентно в другой строке другому символу
+    public boolean closeStrings(String word1, String word2) {
+        if(word1.length() != word2.length()){return false;}
+
+        Map<Character, Integer> word1Map = new HashMap();
+        Map<Character, Integer> word2Map = new HashMap();
+
+        for(char ch : word1.toCharArray()){
+            word1Map.put(ch, word1Map.getOrDefault(ch, 0) + 1);
+        }
+
+        for(char ch : word2.toCharArray()){
+            word2Map.put(ch, word2Map.getOrDefault(ch, 0) + 1);
+        }
+        boolean keysEqual = word1Map.keySet().equals(word2Map.keySet());
+        
+        List<Integer> freq1 = new ArrayList<>(word1Map.values());
+        List<Integer> freq2 = new ArrayList<>(word2Map.values());
+        Collections.sort(freq1);
+        Collections.sort(freq2);
+
+        return keysEqual && freq1.equals(freq2);
+    }
+}
