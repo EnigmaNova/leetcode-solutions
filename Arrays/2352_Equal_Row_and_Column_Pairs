@@ -1,0 +1,41 @@
+class Solution {
+    public int equalPairs(int[][] grid) {
+        int count = 0;
+        List<String> listRow = new ArrayList<>();
+        List<String> listCols = new ArrayList<>();
+
+        processMatrix(grid, listRow, listCols);
+
+        for(int i = 0; i < listRow.size(); i++){
+            for(int j = 0; j < listCols.size(); j++){
+                if(listRow.get(i).equals(listCols.get(j))){
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+        
+    public void processMatrix(int[][] grid, List<String> listRow, List<String> listCols) {
+        int rows = grid.length;
+        int cols = grid[0].length;
+
+        // Обработка строк
+        for (int i = 0; i < rows; i++) {
+            StringBuilder row = new StringBuilder();
+            for (int j = 0; j < cols; j++) {
+                row.append(grid[i][j]).append("-");;
+            }
+            listRow.add(row.toString());
+        }
+
+        // Обработка столбцов
+        for (int j = 0; j < cols; j++) {
+            StringBuilder col = new StringBuilder();
+            for (int i = 0; i < rows; i++) {
+                col.append(grid[i][j]).append("-");;
+            }
+            listCols.add(col.toString());
+        }
+    }
+}
