@@ -1,0 +1,33 @@
+class Solution {
+    // я прохожу по массиву. первый записываю в стек. дальше иду по циклу. если элемент имеет с предыдущим имеют разные знаки, то я с помощью Math.abs проверяю кто больше, если больше текущий, то удаляю имеющийся и добавляю текущий, или если больше прошлый, то не добавляю. а если имеют одинаковые знаки, то добавляю текущий в стек
+    public int[] asteroidCollision(int[] asteroids) {
+        Stack<Integer> stack = new Stack();
+    
+        for (int asteroid : asteroids) {
+            boolean destroyed = false;
+
+            while (!stack.isEmpty() && asteroid < 0 && stack.peek() > 0) {
+                if (Math.abs(asteroid) > stack.peek()) {
+                    stack.pop(); 
+                } else if (Math.abs(asteroid) == stack.peek()) {
+                    stack.pop(); 
+                    destroyed = true;
+                    break;
+                } else {
+                    destroyed = true; 
+                    break;
+                }
+            }
+
+            if (!destroyed) {
+                stack.push(asteroid); 
+            }
+        }
+
+        int[] res = new int[stack.size()];
+        for(int i = res.length-1; i >= 0; i--){
+            res[i] = stack.pop();
+        }
+        return res;
+    }
+}
