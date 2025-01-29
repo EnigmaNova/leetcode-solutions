@@ -1,0 +1,28 @@
+class Solution {
+    public String decodeString(String s) {
+        return helper(s, new int[]{0});
+    }
+    public String helper(String s, int[] index){
+        StringBuilder sb = new StringBuilder();
+        int num = 0;
+
+        while(index[0] < s.length()){
+            char c = s.charAt(index[0]);
+
+            if(Character.isDigit(c)){
+                num = num * 10 + (c - '0');
+            } else if(c == '['){
+                index[0]++;
+                String sub = helper(s, index);
+                sb.append(sub.repeat(num));
+                num = 0;
+            } else if(c == ']'){
+                return sb.toString();
+            } else{
+                sb.append(c);
+            }
+            index[0]++;
+        }
+        return sb.toString();
+    }
+}
