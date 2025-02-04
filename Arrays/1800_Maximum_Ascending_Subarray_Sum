@@ -1,0 +1,21 @@
+class Solution {
+    public int maxAscendingSum(int[] nums) {
+        int maxSum = 0;
+        int left = 0; 
+        
+        while (left < nums.length) {
+            int sum = nums[left];
+            int right = left + 1;
+
+            while (right < nums.length && nums[right] > nums[right - 1]) {
+                sum += nums[right];
+                right++;
+            }
+            
+            maxSum = Math.max(maxSum, sum);
+            left = right;
+        }
+        
+        return maxSum;
+    }
+}
