@@ -1,0 +1,15 @@
+class Solution {
+    public String removeOccurrences(String s, String part) {
+        StringBuilder sb = new StringBuilder();
+        int length = part.length();
+        for(char c : s.toCharArray()){
+            sb.append(c);
+
+            if(sb.length() >= length && sb.substring(sb.length()-length).equals(part)){
+                sb.delete(sb.length() - length, sb.length());
+            }
+
+        }
+        return sb.toString();
+    }
+}
