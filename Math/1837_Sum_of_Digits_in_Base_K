@@ -1,0 +1,12 @@
+class Solution {
+    public int sumBase(int n, int k) {
+        String converted = Integer.toString(n, k);
+        int num = Integer.parseInt(converted);
+        int res = 0;
+        while(num>0){
+            res += num % 10;
+            num = num/10;
+        }
+        return res;
+    }
+}
