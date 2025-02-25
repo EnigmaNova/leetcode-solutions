@@ -1,0 +1,21 @@
+class Solution {
+    //чтобы проходить по условию у подмассива должно быть нечетное количество нечетных элементов а так все равно
+    public int numOfSubarrays(int[] arr) {
+        int mod = 1_000_000_007;
+        int countEven = 1, countOdd = 0;
+        int prefixSum = 0, res = 0;
+
+        for(int num : arr){
+            prefixSum += num;
+
+            if(prefixSum % 2 == 0){
+                res = (res + countOdd) % mod;
+                countEven++;
+            } else{
+                res = (res + countEven) % mod;
+                countOdd++;
+            }
+        }
+        return res;
+    }
+}
