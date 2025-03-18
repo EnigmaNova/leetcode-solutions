@@ -1,0 +1,48 @@
+class Solution {
+    public String minWindow(String s, String t) {
+        if (s.length() == 0 || t.length() == 0) {
+            return "";
+        }
+
+        Map<Character, Integer> targetMap = new HashMap<>();
+        for (char c : t.toCharArray()) {
+            targetMap.put(c, targetMap.getOrDefault(c, 0) + 1);
+        }
+
+        int left = 0, right = 0;
+        int minLen = Integer.MAX_VALUE;
+        int startIndex = 0; 
+        int matched = 0; 
+
+        Map<Character, Integer> winMap = new HashMap<>();
+
+        while (right < s.length()) {
+            char rightChar = s.charAt(right);
+            winMap.put(rightChar, winMap.getOrDefault(rightChar, 0) + 1);
+
+            if (targetMap.containsKey(rightChar) && winMap.get(rightChar).equals(targetMap.get(rightChar))) {
+                matched++;
+            }
+
+            while (matched == targetMap.size()) {
+                if (right - left + 1 < minLen) {
+                    minLen = right - left + 1;
+                    startIndex = left;
+                }
+
+                char leftChar = s.charAt(left);
+                winMap.put(leftChar, winMap.get(leftChar) - 1);
+
+                if (targetMap.containsKey(leftChar) && winMap.get(leftChar) < targetMap.get(leftChar)) {
+                    matched--;
+                }
+
+                left++; 
+            }
+
+            right++; 
+        }
+
+        return minLen == Integer.MAX_VALUE ? "" : s.substring(startIndex, startIndex + minLen);
+    }
+}
