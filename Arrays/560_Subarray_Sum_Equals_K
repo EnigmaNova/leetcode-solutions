@@ -1,0 +1,21 @@
+class Solution {
+    public int subarraySum(int[] nums, int k) {
+                 int count = 0;
+        int[] prefixSum = new int[nums.length + 1];
+        int sum = 0;
+        for(int i = 0; i < nums.length; i++){
+            sum += nums[i];
+            prefixSum[i+1] = sum;
+        }
+        Map<Integer, Integer> prefixCount = new HashMap<>();
+        prefixCount.put(0, 1);
+        for(int i = 0; i < nums.length; i++){
+            int complement = prefixSum[i+1]  - k;
+            if(prefixCount.containsKey(complement)){
+                count += prefixCount.get(complement);
+            }
+            prefixCount.put(prefixSum[i+1], prefixCount.getOrDefault(prefixSum[i+1], 0) + 1);
+        }
+        return count;
+    }
+}
