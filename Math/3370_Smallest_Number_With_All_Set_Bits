@@ -1,0 +1,9 @@
+class Solution {
+    public int smallestNumber(int n) {
+        int num = 2;
+        while(num < n+1){
+            num = num*2;
+        }
+        return num-1;
+    }
+}
