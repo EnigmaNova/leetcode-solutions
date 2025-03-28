@@ -1,0 +1,15 @@
+class Solution {
+    public int diagonalSum(int[][] mat) {
+        int res = 0;
+        int index = mat.length-1;
+        for(int i = 0; i < mat.length; i++){
+            if(i == index){
+                res+= mat[i][i];
+                index--;
+            } else{
+                res += mat[i][i] + mat[index--][i];
+            }
+        }
+        return res;
+    }
+}
