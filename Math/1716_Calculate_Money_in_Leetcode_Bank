@@ -1,0 +1,16 @@
+class Solution {
+    public int totalMoney(int n) {
+        int sum = 0;
+        int count = 1;
+        int met = count;
+        for(int i = 1; i <= n; i++){
+            sum += met;
+            met++;
+            if(i % 7 == 0){
+                count++;
+                met = count;
+            }
+        }
+        return sum;
+    }
+}
