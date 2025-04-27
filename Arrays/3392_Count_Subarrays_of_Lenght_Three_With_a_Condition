@@ -1,0 +1,15 @@
+class Solution {
+    public int countSubarrays(int[] nums) {
+        int count = 0;
+        for(int i = 0; i < nums.length; i++){
+            int end = i+2;
+            if(end > nums.length-1){
+                break;
+            }
+            if(nums[i] + nums[end] == nums[i+1]/2.0){
+                count++;
+            }
+        }
+        return count;
+    }
+}
