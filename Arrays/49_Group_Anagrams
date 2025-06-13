@@ -1,0 +1,34 @@
+class Solution {
+     class SolutionObject {
+        String s;
+        String sortedString;
+
+        SolutionObject(String s) {
+            this.s = s;
+            this.sortedString = stringSort(s);
+        }
+    }
+
+    public String stringSort(String s){
+        char[] chr = s.toCharArray();
+        Arrays.sort(chr);
+        return new String(chr);
+    }
+
+    public List<List<String>> groupAnagrams(String[] strs) {
+        SolutionObject[] arr = new SolutionObject[strs.length];
+        for (int i = 0; i < strs.length; i++) {
+            arr[i] = new SolutionObject(strs[i]);
+        }
+
+        Map<String, List<String>> map = new HashMap<>();
+        for (SolutionObject obj : arr) {
+            if (!map.containsKey(obj.sortedString)) {
+                map.put(obj.sortedString, new ArrayList<>());
+            }
+            map.get(obj.sortedString).add(obj.s);
+        }
+
+        return new ArrayList<>(map.values());
+    }
+}
