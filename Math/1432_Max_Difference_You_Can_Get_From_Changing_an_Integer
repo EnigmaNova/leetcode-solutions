@@ -1,0 +1,46 @@
+class Solution {
+    public int maxDiff(int num) {
+        String numStr = String.valueOf(num);
+
+        char[] maxChars = numStr.toCharArray();
+        char toReplaceMax = 0;
+
+        for(char c : maxChars){
+            if(c != '9'){
+                toReplaceMax = c;
+                break;
+            }
+        }
+
+        String maxStr = numStr;
+        if (toReplaceMax != 0) {
+            maxStr = numStr.replace(toReplaceMax, '9');
+        }
+        int a = Integer.parseInt(maxStr);
+
+        char[] minChars = numStr.toCharArray();
+        char toReplaceMin = 0;
+        char replaceWith = 0;
+
+        if (minChars[0] != '1') {
+            toReplaceMin = minChars[0];
+            replaceWith = '1';
+        } else {
+            for (int i = 1; i < minChars.length; i++) {
+                if (minChars[i] != '0' && minChars[i] != '1') {
+                    toReplaceMin = minChars[i];
+                    replaceWith = '0';
+                    break;
+                }
+            }
+        }
+
+        String minStr = numStr;
+        if (toReplaceMin != 0) {
+            minStr = numStr.replace(toReplaceMin, replaceWith);
+        }
+        int b = Integer.parseInt(minStr);
+
+        return a - b;
+    }
+}
